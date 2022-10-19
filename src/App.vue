@@ -1,12 +1,27 @@
-<script setup lang="ts">
-import { useCounter, } from "./stores/counter";
+<template>
+  <div class="box">
 
-const counter = useCounter()
+    <p>comp1-sheep: {{user.sheep}}</p>
+    <button @click="addSheep">add sheep</button>
+  </div>
+</template>
+
+<script setup lang='ts'>
+// import { useUserStore } from '.';
+import { useUserStore } from './stores/user'
+const user = useUserStore();
+
+function addSheep() {
+  user.sheep++;
+  console.log("sheep count", user.sheep);
+}
+
 </script>
 
-<template>
-  <p>The counter is at {{ counter.n }}</p>
-  <button @click="counter.n++">Increment</button>
-  <button @click="counter.n--">Decrement</button>
-  <button @click="counter.n = 0">Reset</button>
-</template>
+<style scoped>
+.box {
+  width: 200px;
+  height: 200px;
+  background-color: indianred;
+}
+</style>
